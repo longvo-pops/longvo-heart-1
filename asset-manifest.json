@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/longvo-heart-1/static/css/main.073c9b0a.css",
-    "main.js": "/longvo-heart-1/static/js/main.48c92004.js",
+    "main.js": "/longvo-heart-1/static/js/main.c12746ca.js",
     "static/js/787.dc4a7a0a.chunk.js": "/longvo-heart-1/static/js/787.dc4a7a0a.chunk.js",
     "index.html": "/longvo-heart-1/index.html",
     "main.073c9b0a.css.map": "/longvo-heart-1/static/css/main.073c9b0a.css.map",
-    "main.48c92004.js.map": "/longvo-heart-1/static/js/main.48c92004.js.map",
+    "main.c12746ca.js.map": "/longvo-heart-1/static/js/main.c12746ca.js.map",
     "787.dc4a7a0a.chunk.js.map": "/longvo-heart-1/static/js/787.dc4a7a0a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.48c92004.js"
+    "static/js/main.c12746ca.js"
   ]
 }
