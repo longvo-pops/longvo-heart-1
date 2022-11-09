@@ -1,21 +1,20 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import Firefly from 'firefly-react';
 import Lottie from 'react-lottie';
-import * as animationData from './73482-heart.json';
-
-const defaultOptions = {
-  loop: true,
-  autoplay: true,
-  animationData: animationData,
-  rendererSettings: {
-    preserveAspectRatio: 'xMidYMid slice',
-  },
-};
+import firstHeart from './73482-heart.json';
+import bestHeart from './97653-best-heart.json';
+import boxHeart from './97380-heart-box.json';
+import likeHeart from './6974-like-heart-animation.json';
+import lheart from './7692-heart.json';
+import heartAnimation from './96723-heart-animation.json';
+import randomHeart from './96839-heart.json';
+import particlesHeart from './725-heart-with-particles.json';
 
 const colors = ['Yellow', 'Orange'];
-
+const HEARTS = [firstHeart, bestHeart, boxHeart, particlesHeart, likeHeart, lheart, heartAnimation, randomHeart];
 const App = () => {
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const [canvasHeight, setCanvasHeight] = useState(window.innerHeight);
   const [canvasWidth, setCanvasWidth] = useState(window.innerWidth);
   const heartSize = canvasWidth < canvasHeight ? canvasWidth / 2 : canvasHeight / 2;
@@ -28,11 +27,30 @@ const App = () => {
     false
   );
 
+  const onClick = useCallback(() => {
+    let nextIndex = selectedIndex + 1;
+    if (nextIndex >= HEARTS.length) {
+      nextIndex = 0;
+    }
+    setSelectedIndex(nextIndex);
+  }, [selectedIndex]);
+
+  const getOptions = useMemo(() => {
+    return {
+      loop: true,
+      autoplay: true,
+      animationData: HEARTS[selectedIndex],
+      rendererSettings: {
+        preserveAspectRatio: 'xMidYMid slice',
+      },
+    };
+  }, [selectedIndex]);
+
   return (
     <div className="App">
       <header className="App-header">
-        <div style={{ position: 'absolute' }}>
-          <Lottie options={defaultOptions} height={heartSize} width={heartSize} />
+        <div style={{ position: 'absolute' }} onClick={onClick}>
+          <Lottie options={getOptions} height={heartSize} width={heartSize} />
         </div>
         <Firefly canvasWidth={canvasWidth} canvasHeight={canvasHeight} colors={colors} />
       </header>
