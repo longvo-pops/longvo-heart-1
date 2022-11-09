@@ -1,7 +1,7 @@
 import './App.css';
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback } from 'react';
 import Firefly from 'firefly-react';
-import Lottie from 'react-lottie';
+import Lottie from 'lottie-react';
 import firstHeart from './73482-heart.json';
 import bestHeart from './97653-best-heart.json';
 import boxHeart from './97380-heart-box.json';
@@ -35,22 +35,16 @@ const App = () => {
     setSelectedIndex(nextIndex);
   }, [selectedIndex]);
 
-  const getOptions = useMemo(() => {
-    return {
-      loop: true,
-      autoplay: true,
-      animationData: HEARTS[selectedIndex],
-      rendererSettings: {
-        preserveAspectRatio: 'xMidYMid slice',
-      },
-    };
-  }, [selectedIndex]);
-
   return (
     <div className="App">
       <header className="App-header">
         <div style={{ position: 'absolute' }} onClick={onClick}>
-          <Lottie options={getOptions} height={heartSize} width={heartSize} />
+          <Lottie
+            style={{ height: heartSize, width: heartSize }}
+            animationData={JSON.parse(JSON.stringify(HEARTS[selectedIndex]))}
+            height={heartSize}
+            width={heartSize}
+          />
         </div>
         <Firefly canvasWidth={canvasWidth} canvasHeight={canvasHeight} colors={colors} />
       </header>
